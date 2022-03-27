@@ -1,8 +1,10 @@
 const container = document.querySelector('#container')
 const height = document.getElementById('container').clientHeight;
 const width = document.getElementById('container').clientWidth;
+const reset = document.querySelector('#reset');
 
 buildGrid()
+
 
 function buildGrid(size) {
     size = prompt("Enter number 10-100");
@@ -16,3 +18,10 @@ function buildGrid(size) {
         }
     }
 }
+
+reset.addEventListener('click', () => {
+    const gridItems = document.querySelectorAll('#container > div');
+    gridItems.forEach((Item) => {
+        Item.style.backgroundColor = 'gray';
+    })
+});
