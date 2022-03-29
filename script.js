@@ -31,8 +31,8 @@ function buildGrid(size) {
     for (let i = 0; i < size; i++) {
         for (let j = 0; j < size; j++) {
             const grid = document.createElement("div")
-            grid.style.height = height/size - 2 + "px";
-            grid.style.width = width/size - 2 + "px";
+            grid.style.height = height/size + "px";  //add - 2 if border radius is added to individual grids
+            grid.style.width = width/size + "px";
             grid.classList.add('grid');
             grid.addEventListener('mouseover', changeMode)
             container.appendChild(grid);
