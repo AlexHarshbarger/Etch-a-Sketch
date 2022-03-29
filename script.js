@@ -3,10 +3,28 @@ const height = document.getElementById('container').clientHeight;
 const width = document.getElementById('container').clientWidth;
 const reset = document.querySelector('#reset');
 const grid = document.querySelector('.grid');
+const clear = document.querySelector('#clear');
+const eraser = document.querySelector('#eraser');
+const draw = document.querySelector('#draw');
+let option = 0;
 
-buildGrid(10)
+eraser.onclick = () => {
+    return option = 1;
+};
 
+draw.onclick = () => {
+    return option = 0;
+}
 
+function changeMode(e) {
+    if (option == 0) {
+        div = this; 
+        div.style.backgroundColor = "black";
+    } else {
+        div = this;
+        div.style.backgroundColor = "white";
+    }
+}
 
 function buildGrid(size) {
     size = prompt("Enter number 10-100");
@@ -16,7 +34,7 @@ function buildGrid(size) {
             grid.style.height = height/size - 2 + "px";
             grid.style.width = width/size - 2 + "px";
             grid.classList.add('grid');
-            grid.addEventListener('mouseover', colorIn)
+            grid.addEventListener('mouseover', changeMode)
             container.appendChild(grid);
         }
     }
@@ -25,13 +43,29 @@ function buildGrid(size) {
 
 reset.addEventListener('click', () => {
     window.location.reload();
-    // const gridItems = document.querySelectorAll('#container > div');
-    // gridItems.forEach((Item) => {
-    //     Item.style.backgroundColor = 'white';
-    // })
 });
 
-function colorIn() {
-    div = this;
-    div.style.backgroundColor = "black";
-}
+
+
+clear.addEventListener('click', () => {
+    const gridItems = document.querySelectorAll('#container > div');
+    gridItems.forEach((Item) => {
+        Item.style.backgroundColor = 'white';
+    })
+    return option = 0;
+})
+
+eraser.addEventListener('click', () => {
+    return option = 1;
+})
+
+
+
+
+
+
+
+
+
+
+buildGrid()

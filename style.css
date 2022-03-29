@@ -26,8 +26,13 @@ body {
     background-color: white;
 }
 
-.eraser, #reset {
+#eraser, #reset, #clear, #draw {
     margin: 20px;
     padding: 10px 20px;
     border-radius: 10px;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
 }
