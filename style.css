@@ -13,12 +13,20 @@ body {
     text-decoration: underline;
 }
 
+.buttons {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    justify-content: center;
+}
+
 #container {
     height: 500px;
     width: 500px;
     display: flex;
     flex-wrap: wrap;
-    border: 20px solid red;
+    border: 30px solid red;
+    border-radius: 20px;
 }
 
 .grid {
@@ -33,7 +41,12 @@ body {
     border-radius: 10px;
 }
 
-.buttons {
+#eraser:hover, #reset:hover, #clear:hover, #draw:hover, #random:hover {
+    background-color: gray;
+}
+
+.board {
     display: flex;
-    gap: 10px;
+    flex-direction: row-reverse;
+    gap: 25px;
 }
