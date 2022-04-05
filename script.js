@@ -2,12 +2,14 @@ const container = document.querySelector('#container')
 const height = document.getElementById('container').clientHeight;
 const width = document.getElementById('container').clientWidth;
 const reset = document.querySelector('#reset');
-const grid = document.querySelector('.grid');
+const grid = document.querySelectorAll('.grid');
 const clear = document.querySelector('#clear');
 const eraser = document.querySelector('#eraser');
 const draw = document.querySelector('#draw');
 const random = document.querySelector('#random');
 let option = 0;
+
+buildGrid(30)
 
 eraser.onclick = () => {
     return option = 1;
@@ -15,6 +17,10 @@ eraser.onclick = () => {
 
 draw.onclick = () => {
     return option = 0;
+}
+
+random.onclick = () => {
+    return option = 2;
 }
 
 function changeMode(e) {
@@ -31,22 +37,41 @@ function changeMode(e) {
 }
 
 function buildGrid(size) {
-    size = prompt("Enter number 10-100");
+    // size = prompt("Enter number 10-100");
         for (let i = 0; i < size; i++) {
             for (let j = 0; j < size; j++) {
                 const grid = document.createElement("div")
                 grid.style.height = height/size + "px";  //add - 2 if border radius is added to individual grids
                 grid.style.width = width/size + "px";
-                grid.classList.add('grid');
+                // grid.classList.add('grid');
                 grid.addEventListener('mouseover', changeMode)
                 container.appendChild(grid);
                 } 
             } 
-        return grid;
+        // return grid;
+}
+
+function remake() {
+    while (container.firstChild) {
+        container.removeChild(container.lastChild)
+    }
+    size = prompt("Enter number 10-100");
+    buildGrid(size)
+    return option = 0;
 }
 
 reset.addEventListener('click', () => {
-    window.location.reload();
+    // window.location.reload();
+    remake()
+    // while (grid.firstChild) {
+    //     grid.removeChild(grid.lastChild)
+    // }
+    // size = prompt("Enter number 10-100");
+    // const gridItems = document.querySelectorAll('#container > div')
+    // gridItems.forEach((Item) => {
+    //     Item.style.backgroundColor = 'white';
+    // })
+    // buildGrid(size)
 });
 
 
@@ -59,26 +84,9 @@ clear.addEventListener('click', () => {
     return option = 0;
 })
 
-eraser.addEventListener('click', () => {
-    return option = 1;
-})
-
-random.addEventListener('click', () => {
-    return option = 2;
-})
-
 function randomColor() {
     const r = Math.floor(Math.random() * 255) + 1;
     const g = Math.floor(Math.random() * 255) + 1;
     const b = Math.floor(Math.random() * 255) + 1;
     return 'rgb(' + r + ',' + g + ',' + b + ')';
 }
-
-
-
-
-
-
-
-
-buildGrid()
