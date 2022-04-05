@@ -23,6 +23,18 @@ random.onclick = () => {
     return option = 2;
 }
 
+reset.onclick = () => {
+    remake()
+}
+
+clear.addEventListener('click', () => {
+    const gridItems = document.querySelectorAll('#container > div');
+    gridItems.forEach((Item) => {
+        Item.style.backgroundColor = 'white';
+    })
+    return option = 0;
+})
+
 function changeMode(e) {
     if (option == 0) {
         div = this; 
@@ -59,30 +71,6 @@ function remake() {
     buildGrid(size)
     return option = 0;
 }
-
-reset.addEventListener('click', () => {
-    // window.location.reload();
-    remake()
-    // while (grid.firstChild) {
-    //     grid.removeChild(grid.lastChild)
-    // }
-    // size = prompt("Enter number 10-100");
-    // const gridItems = document.querySelectorAll('#container > div')
-    // gridItems.forEach((Item) => {
-    //     Item.style.backgroundColor = 'white';
-    // })
-    // buildGrid(size)
-});
-
-
-
-clear.addEventListener('click', () => {
-    const gridItems = document.querySelectorAll('#container > div');
-    gridItems.forEach((Item) => {
-        Item.style.backgroundColor = 'white';
-    })
-    return option = 0;
-})
 
 function randomColor() {
     const r = Math.floor(Math.random() * 255) + 1;
