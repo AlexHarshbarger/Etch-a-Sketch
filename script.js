@@ -8,32 +8,49 @@ const eraser = document.querySelector('#eraser');
 const draw = document.querySelector('#draw');
 const random = document.querySelector('#random');
 let option = 0;
+let totalColored = 0;
+draw.style.backgroundColor = "gray"
 
 buildGrid(30)
 
 eraser.onclick = () => {
+    eraser.style.backgroundColor = "gray";
+    draw.style.backgroundColor = "beige";
+    random.style.backgroundColor = "beige";
     return option = 1;
 };
 
 draw.onclick = () => {
+    draw.style.backgroundColor = "gray";
+    random.style.backgroundColor = "beige";
+    eraser.style.backgroundColor = "beige";
     return option = 0;
 }
 
 random.onclick = () => {
+    draw.style.backgroundColor = "beige";
+    eraser.style.backgroundColor = "beige";
+    random.style.backgroundColor = "gray";
     return option = 2;
 }
 
 reset.onclick = () => {
+    eraser.style.backgroundColor = "beige";
+    draw.style.backgroundColor = "beige";
+    random.style.backgroundColor = "beige";
     remake()
 }
 
-clear.addEventListener('click', () => {
+clear.onclick = () => {
     const gridItems = document.querySelectorAll('#container > div');
     gridItems.forEach((Item) => {
         Item.style.backgroundColor = 'white';
+    random.style.backgroundColor = "beige";
+    eraser.style.backgroundColor = "beige";
+    draw.style.backgroundColor = "gray"
     })
     return option = 0;
-})
+}
 
 function changeMode(e) {
     if (option == 0) {
@@ -45,22 +62,20 @@ function changeMode(e) {
     } else if (option == 2) {
         div = this;
         div.style.backgroundColor = randomColor();
+        totalColored += 1;
     }
 }
 
 function buildGrid(size) {
-    // size = prompt("Enter number 10-100");
         for (let i = 0; i < size; i++) {
             for (let j = 0; j < size; j++) {
                 const grid = document.createElement("div")
-                grid.style.height = height/size + "px";  //add - 2 if border radius is added to individual grids
+                grid.style.height = height/size + "px";
                 grid.style.width = width/size + "px";
-                // grid.classList.add('grid');
                 grid.addEventListener('mouseover', changeMode)
                 container.appendChild(grid);
                 } 
-            } 
-        // return grid;
+            }
 }
 
 function remake() {
@@ -69,6 +84,7 @@ function remake() {
     }
     size = prompt("Enter number 10-100");
     buildGrid(size)
+    draw.style.backgroundColor = "gray"
     return option = 0;
 }
 
