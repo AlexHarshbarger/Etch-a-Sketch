@@ -8,10 +8,13 @@ const eraser = document.querySelector('#eraser');
 const draw = document.querySelector('#draw');
 const random = document.querySelector('#random');
 let option = 0;
-let totalColored = 0;
 draw.style.backgroundColor = "gray"
 
 buildGrid(30)
+
+let mouseDown = false;
+document.body.onmousedown = () => (mouseDown = true)
+document.body.onmouseup = () => (mouseDown = false)
 
 eraser.onclick = () => {
     eraser.style.backgroundColor = "gray";
@@ -53,6 +56,7 @@ clear.onclick = () => {
 }
 
 function changeMode(e) {
+    if (e.type === 'mouseover' && !mouseDown) return;
     if (option == 0) {
         div = this; 
         div.style.backgroundColor = "black";
@@ -61,8 +65,8 @@ function changeMode(e) {
         div.style.backgroundColor = "white";
     } else if (option == 2) {
         div = this;
+        console.log(randomColor())
         div.style.backgroundColor = randomColor();
-        totalColored += 1;
     }
 }
 
@@ -72,7 +76,9 @@ function buildGrid(size) {
                 const grid = document.createElement("div")
                 grid.style.height = height/size + "px";
                 grid.style.width = width/size + "px";
+                grid.style.backgroundColor = "white";
                 grid.addEventListener('mouseover', changeMode)
+                grid.addEventListener('mousedown', changeMode)
                 container.appendChild(grid);
                 } 
             }
