@@ -5,6 +5,7 @@ body {
     align-items: center;
     justify-content: center;
     background-color: lightblue;
+    user-select: none;
 }
 
 .header {
@@ -52,5 +53,5 @@ body {
     display: flex;
     flex-direction: row-reverse;
     gap: 25px;
-    z-index: 10000;
+    /* z-index: 10000; */
 }

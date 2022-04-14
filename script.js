@@ -2,7 +2,7 @@ const container = document.querySelector('#container')
 const height = document.getElementById('container').clientHeight;
 const width = document.getElementById('container').clientWidth;
 const reset = document.querySelector('#reset');
-const grid = document.querySelectorAll('.grid');
+// const grid = document.querySelectorAll('.grid');
 const clear = document.querySelector('#clear');
 const eraser = document.querySelector('#eraser');
 const draw = document.querySelector('#draw');
@@ -12,28 +12,22 @@ draw.style.backgroundColor = "gray"
 
 buildGrid(30)
 
-let mouseDown = false;
-document.body.onmousedown = () => (mouseDown = true)
-document.body.onmouseup = () => (mouseDown = false)
+var mouseDown = false;
+container.onmousedown = () => (mouseDown = true);
+document.onmouseup = () => (mouseDown = false);
 
 eraser.onclick = () => {
-    eraser.style.backgroundColor = "gray";
-    draw.style.backgroundColor = "beige";
-    random.style.backgroundColor = "beige";
+    backgroundColor(eraser, draw, random)
     return option = 1;
-};
+}
 
 draw.onclick = () => {
-    draw.style.backgroundColor = "gray";
-    random.style.backgroundColor = "beige";
-    eraser.style.backgroundColor = "beige";
+    backgroundColor(draw, eraser, random)
     return option = 0;
 }
 
 random.onclick = () => {
-    draw.style.backgroundColor = "beige";
-    eraser.style.backgroundColor = "beige";
-    random.style.backgroundColor = "gray";
+    backgroundColor(random, draw, eraser)
     return option = 2;
 }
 
@@ -48,15 +42,13 @@ clear.onclick = () => {
     const gridItems = document.querySelectorAll('#container > div');
     gridItems.forEach((Item) => {
         Item.style.backgroundColor = 'white';
-    random.style.backgroundColor = "beige";
-    eraser.style.backgroundColor = "beige";
-    draw.style.backgroundColor = "gray"
+    backgroundColor(draw, eraser, random)
     })
     return option = 0;
 }
 
 function changeMode(e) {
-    if (e.type === 'mouseover' && !mouseDown) return;
+    if (e.type === 'mouseenter' && !mouseDown) return;
     if (option == 0) {
         div = this; 
         div.style.backgroundColor = "black";
@@ -71,17 +63,18 @@ function changeMode(e) {
 }
 
 function buildGrid(size) {
-        for (let i = 0; i < size; i++) {
-            for (let j = 0; j < size; j++) {
-                const grid = document.createElement("div")
-                grid.style.height = height/size + "px";
-                grid.style.width = width/size + "px";
-                grid.style.backgroundColor = "white";
-                grid.addEventListener('mouseover', changeMode)
-                grid.addEventListener('mousedown', changeMode)
-                container.appendChild(grid);
-                } 
-            }
+    for (let i = 0; i < size; i++) {
+        for (let j = 0; j < size; j++) {
+            const grid = document.createElement("div")
+            grid.style.height = height/size + "px";
+            grid.style.width = width/size + "px";
+            grid.style.backgroundColor = "white";
+            grid.classList.add("grid");
+            grid.addEventListener('mousedown', changeMode);
+            grid.addEventListener('mouseenter', changeMode);
+            container.appendChild(grid);
+            } 
+        }
 }
 
 function remake() {
@@ -99,4 +92,10 @@ function randomColor() {
     const g = Math.floor(Math.random() * 255) + 1;
     const b = Math.floor(Math.random() * 255) + 1;
     return 'rgb(' + r + ',' + g + ',' + b + ')';
+}
+
+function backgroundColor(a, b, c) {
+    a.style.backgroundColor = "gray"
+    b.style.backgroundColor = "beige"
+    c.style.backgroundColor = "beige"
 }
