@@ -37,16 +37,17 @@ body {
     background-color: white;
 }
 
-#eraser, #reset, #clear, #draw, #random {
+.button {
     margin: 20px;
     padding: 10px 20px;
     border-radius: 10px;
     background-color: beige;
 }
 
-#eraser:hover, #reset:hover, #clear:hover, #draw:hover, #random:hover {
+.button:hover {
     /* background-color: gray; */
     cursor: pointer;
+    transform: translateY(-5px);
 }
 
 .board {
