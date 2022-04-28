@@ -82,7 +82,13 @@ function remake() {
         container.removeChild(container.lastChild)
     }
     size = prompt("Enter number 10-100");
-    buildGrid(size)
+    if (size === "") {
+        buildGrid(30);
+    } else if (size === null) {
+        buildGrid(30)
+    } else {
+        buildGrid(size)
+    }
     draw.style.backgroundColor = "gray"
     return option = 0;
 }
