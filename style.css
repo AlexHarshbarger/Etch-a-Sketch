@@ -37,7 +37,7 @@ body {
     background-color: white;
 }
 
-.button {
+.buttonpick {
     margin: 20px;
     padding: 10px 20px;
     border-radius: 10px;
@@ -45,7 +45,7 @@ body {
     box-shadow: 2px 3px;
 }
 
-.button:hover {
+.buttonpick:hover {
     cursor: pointer;
     transform: translateY(-5px);
 }
@@ -54,4 +54,13 @@ body {
     display: flex;
     flex-direction: row-reverse;
     gap: 25px;
+}
+
+#picker {
+    width: 129.94px;
+    height: 39px;
+    padding: 5px;
+    padding-right: 15px;
+    padding-left: 15px;
+    box-shadow: 3px 4px;
 }

@@ -7,8 +7,9 @@ const clear = document.querySelector('#clear');
 const eraser = document.querySelector('#eraser');
 const draw = document.querySelector('#draw');
 const random = document.querySelector('#random');
+const picker = document.querySelector('#picker')
 let option = 0;
-draw.style.backgroundColor = "gray"
+draw.style.backgroundColor = "gray";
 
 buildGrid(30)
 
@@ -17,17 +18,19 @@ container.onmousedown = () => (mouseDown = true);
 document.onmouseup = () => (mouseDown = false);
 
 eraser.onclick = () => {
-    backgroundColor(eraser, draw, random)
+    buttonColor(eraser, draw, random)
     return option = 1;
 }
 
 draw.onclick = () => {
-    backgroundColor(draw, eraser, random)
-    return option = 0;
+    buttonColor(draw, eraser, random)
+    return option = picker.value;
+
+    // return option = 0;
 }
 
 random.onclick = () => {
-    backgroundColor(random, draw, eraser)
+    buttonColor(random, draw, eraser)
     return option = 2;
 }
 
@@ -42,22 +45,21 @@ clear.onclick = () => {
     const gridItems = document.querySelectorAll('#container > div');
     gridItems.forEach((Item) => {
         Item.style.backgroundColor = 'white';
-    backgroundColor(draw, eraser, random)
+        buttonColor(draw, eraser, random)
     })
-    return option = 0;
+    return option = picker.value;
 }
 
 function changeMode(e) {
     if (e.type === 'mouseenter' && !mouseDown) return;
-    if (option == 0) {
+    if (option.length === 7 || option == 0) {
         div = this; 
-        div.style.backgroundColor = "black";
+        div.style.backgroundColor = picker.value;
     } else if (option == 1) {
         div = this;
         div.style.backgroundColor = "white";
     } else if (option == 2) {
         div = this;
-        console.log(randomColor())
         div.style.backgroundColor = randomColor();
     }
 }
@@ -100,7 +102,7 @@ function randomColor() {
     return 'rgb(' + r + ',' + g + ',' + b + ')';
 }
 
-function backgroundColor(a, b, c) {
+function buttonColor(a, b, c) {
     a.style.backgroundColor = "gray"
     b.style.backgroundColor = "beige"
     c.style.backgroundColor = "beige"
